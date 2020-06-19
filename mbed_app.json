@@ -1,0 +1,15 @@
+{
+    "target_overrides": {
+        "*": {
+            "platform.stdio-convert-newlines": true,
+            "platform.stdio-baud-rate": 115200
+        },
+        "DISCO_L475VG_IOT01A": {
+            "target.components_add": ["wifi_ism43362"],
+            "target.network-default-interface-type": "WIFI",
+            "nsapi.default-wifi-security": "WPA_WPA2",
+            "nsapi.default-wifi-ssid": "\"SSID\"",
+            "nsapi.default-wifi-password": "\"PASSWORD\""
+        }
+    }
+}
