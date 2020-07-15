@@ -58,7 +58,6 @@ and removing calls to _DoWork will yield the same results. */
 /* Your iothub connection string  */
 static const char* connectionString = MBED_CONF_APP_IOTHUB_CONNECTION_STRING;
 #define MESSAGE_COUNT        5
-static bool g_continueRunning = true;
 static size_t g_message_count_send_confirmations = 0;
 
 static void send_confirm_callback(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void* userContextCallback)
@@ -82,6 +81,23 @@ static void connection_status_callback(IOTHUB_CLIENT_CONNECTION_STATUS result, I
     {
         (void)printf("The device client has been disconnected\r\n");
     }
+}
+
+static IOTHUBMESSAGE_DISPOSITION_RESULT receive_msg_callback(IOTHUB_MESSAGE_HANDLE message, void* user_context)
+{
+    const unsigned char* msg;
+    size_t len;
+
+    if (IoTHubMessage_GetByteArray(message, &msg, &len) != IOTHUB_MESSAGE_OK)
+    {
+        printf("Error getting message\n");
+    }
+    else
+    {
+        printf("Received from cloud: %.*s\n", (int)len, msg);
+    }
+
+    return IOTHUBMESSAGE_ACCEPTED;
 }
 
 int run(void)
@@ -148,7 +164,11 @@ int run(void)
         // Setting connection status callback to get indication of connection to iothub
         (void)IoTHubDeviceClient_LL_SetConnectionStatusCallback(device_ll_handle, connection_status_callback, NULL);
 
-        do
+        if (IOTHUB_CLIENT_OK != IoTHubDeviceClient_LL_SetMessageCallback(device_ll_handle, receive_msg_callback, NULL)) {
+            printf("error IoTHubDeviceClient_LL_SetMessageCallback\n");
+        }
+
+        while (true)
         {
             if (messages_sent < MESSAGE_COUNT)
             {
@@ -173,16 +193,10 @@ int run(void)
 
                 messages_sent++;
             }
-            else if (g_message_count_send_confirmations >= MESSAGE_COUNT)
-            {
-                // After all messages are all received stop running
-                g_continueRunning = false;
-            }
 
             IoTHubDeviceClient_LL_DoWork(device_ll_handle);
             ThreadAPI_Sleep(1);
-
-        } while (g_continueRunning);
+        }
 
         // Clean up the iothub sdk handle
         IoTHubDeviceClient_LL_Destroy(device_ll_handle);
