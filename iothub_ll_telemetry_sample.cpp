@@ -6,6 +6,8 @@
 // when writing production code.
 
 #include "mbed.h"
+#include "rtc_api.h"
+#include "NTPClient.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -213,7 +215,22 @@ int main()
     }
 
     printf("MAC: %s\n", _defaultSystemNetwork->get_mac_address());
-    printf("Connection Success\n\n");
+    printf("Connection Success\n");
+
+    NTPClient ntp(_defaultSystemNetwork);
+    rtc_init();
+
+    time_t timestamp = ntp.get_timestamp();
+    if (timestamp < 0) {
+        printf("An error occurred when getting the time. Code: %ld\r\n", timestamp);
+        return 1;
+    }
+
+    rtc_write(timestamp);
+    printf("Current time %s written to RTC\r\n", ctime(&timestamp));
+
+    time_t rtc_timestamp = rtc_read();
+    printf("RTC reports %s\n", ctime(&rtc_timestamp));
 
     run();
 
