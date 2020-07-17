@@ -1,4 +1,10 @@
 {
+    "config": {
+        "iothub_connection_string": {
+            "help": "Azure IoT Hub connection string",
+            "value": "\"HostName=...;DeviceId=...;SharedAccessKey=...\""
+        }
+    },
     "target_overrides": {
         "*": {
             "platform.stdio-convert-newlines": true,
