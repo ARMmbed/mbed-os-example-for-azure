@@ -9,6 +9,7 @@
 #include "iothub_message.h"
 #include "azure_c_shared_utility/shared_util_options.h"
 #include "azure_c_shared_utility/threadapi.h"
+#include "azure_c_shared_utility/tickcounter.h"
 #include "azure_c_shared_utility/xlogging.h"
 
 #include "iothubtransportmqtt.h"
@@ -62,6 +63,7 @@ void demo() {
     static const char connection_string[] = MBED_CONF_APP_IOTHUB_CONNECTION_STRING;
     IOTHUB_CLIENT_RESULT res;
     bool trace_on = true;
+    tickcounter_ms_t interval = 100;
 
     LogInfo("Initializing IoT Hub client");
     IoTHub_Init();
@@ -89,10 +91,10 @@ void demo() {
         goto cleanup;
     }
 
-    // Set connection/disconnection callback
-    res = IoTHubDeviceClient_SetConnectionStatusCallback(client_handle, on_connection_status, nullptr);
+    // Process communication every 100ms
+    res = IoTHubDeviceClient_SetOption(client_handle, OPTION_DO_WORK_FREQUENCY_IN_MS, &interval);
     if (res != IOTHUB_CLIENT_OK) {
-        LogError("Failed to set connection status callback, error: %d", res);
+        LogError("Failed to set communication process frequency, error: %d", res);
         goto cleanup;
     }
 
@@ -100,6 +102,13 @@ void demo() {
     res = IoTHubDeviceClient_SetMessageCallback(client_handle, on_message_received, nullptr);
     if (res != IOTHUB_CLIENT_OK) {
         LogError("Failed to set message callback, error: %d", res);
+        goto cleanup;
+    }
+
+    // Set connection/disconnection callback
+    res = IoTHubDeviceClient_SetConnectionStatusCallback(client_handle, on_connection_status, nullptr);
+    if (res != IOTHUB_CLIENT_OK) {
+        LogError("Failed to set connection status callback, error: %d", res);
         goto cleanup;
     }
 
