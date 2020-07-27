@@ -58,17 +58,9 @@ Info: RTC reports Wed Jul22 15:9:41 2020
 Now it  initializes the Azure SDK and starts sending one message every second:
 ```
 Info: Sending: "10 messages left to send, or until we receive a reply"
--> 15:9:43 CONNECT | VER: 4 | KEEPALIVE: 240 | FLAGS: 192 | USERNAME: <your Hub>.azure-devices.net/<your device>/?api-version=2017-11-08-preview&DeviceClientType=iothubclient%2f1.3.8%20(native%3b%20mbedOS5%3b%20undefined) | PWD: XXXX | CLEAN: 0
-<- 15:9:43 CONNACK | SESSION_PRESENT: true | RETURN_CODE: 0x0
 Info: Connected to IoT Hub
--> 15:9:43 SUBSCRIBE | PACKET_ID: 2 | TOPIC_NAME: devices/<your device>/messages/devicebound/# | QOS: 1
--> 15:9:43 PUBLISH | IS_DUP: false | RETAIN: 0 | QOS: DELIVER_AT_LEAST_ONCE | TOPIC_NAME: devices/<your device>/messages/events/ | PACKET_ID: 3 | PAYLOAD_LEN: 53
-<- 15:9:43 SUBACK | PACKET_ID: 2 | RETURN_CODE: 1
-<- 15:9:43 PUBACK | PACKET_ID: 3
 Info: Message sent successfully
 Info: Sending: "9 messages left to send, or until we receive a reply"
--> 15:9:44 PUBLISH | IS_DUP: false | RETAIN: 0 | QOS: DELIVER_AT_LEAST_ONCE | TOPIC_NAME: devices/<your device>/messages/events/ | PACKET_ID: 4 | PAYLOAD_LEN: 52
-<- 15:9:44 PUBACK | PACKET_ID: 4
 Info: Message sent successfully
 ...
 ```
@@ -81,6 +73,24 @@ Once the message is received by your device, it prints:
 ```
 Info: Message received from IoT Hub
 Info: Message body: <YOUR MESSAGE>
+```
+
+## Tracing the IoT Hub client
+
+To monitor incoming/outgoing IoT Hub events, you can enable tracing by setting `iothub_client_trace` in [`mbed_app.json`](./mbed_app.json) to `true`. This can be useful for debugging issues related to connections or credentials.
+
+Sample trace for the first message sent:
+
+```
+Info: Sending: "10 messages left to send, or until we receive a reply"
+-> 15:9:43 CONNECT | VER: 4 | KEEPALIVE: 240 | FLAGS: 192 | USERNAME: <your Hub>.azure-devices.net/<your device>/?api-version=2017-11-08-preview&DeviceClientType=iothubclient%2f1.3.8%20(native%3b%20mbedOS5%3b%20undefined) | PWD: XXXX | CLEAN: 0
+<- 15:9:43 CONNACK | SESSION_PRESENT: true | RETURN_CODE: 0x0
+Info: Connected to IoT Hub
+-> 15:9:43 SUBSCRIBE | PACKET_ID: 2 | TOPIC_NAME: devices/<your device>/messages/devicebound/# | QOS: 1
+-> 15:9:43 PUBLISH | IS_DUP: false | RETAIN: 0 | QOS: DELIVER_AT_LEAST_ONCE | TOPIC_NAME: devices/<your device>/messages/events/ | PACKET_ID: 3 | PAYLOAD_LEN: 53
+<- 15:9:43 SUBACK | PACKET_ID: 2 | RETURN_CODE: 1
+<- 15:9:43 PUBACK | PACKET_ID: 3
+Info: Message sent successfully
 ```
 
 ## Troubleshooting

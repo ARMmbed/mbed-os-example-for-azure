@@ -61,9 +61,9 @@ static void on_message_sent(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void* user
 
 void demo() {
     static const char connection_string[] = MBED_CONF_APP_IOTHUB_CONNECTION_STRING;
-    IOTHUB_CLIENT_RESULT res;
-    bool trace_on = true;
+    bool trace_on = MBED_CONF_APP_IOTHUB_CLIENT_TRACE;
     tickcounter_ms_t interval = 100;
+    IOTHUB_CLIENT_RESULT res;
 
     LogInfo("Initializing IoT Hub client");
     IoTHub_Init();
