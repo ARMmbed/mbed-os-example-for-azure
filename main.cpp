@@ -117,7 +117,7 @@ void demo() {
         goto cleanup;
     }
 
-    // Send a message to the cloud once per second for ten times
+    // Send ten message to the cloud (one per second)
     // or until we receive a message from the cloud
     IOTHUB_MESSAGE_HANDLE message_handle;
     char message[80];
@@ -147,7 +147,9 @@ void demo() {
         ThisThread::sleep_for(1s);
     }
 
-    while (true) {
+    // If the user didn't manage to send a cloud-to-device message earlier,
+    // let's wait until we receive one
+    while (!message_received) {
         // Continue to receive messages in the communication thread
         // which is internally created and maintained by the Azure SDK.
         sleep();
