@@ -7,6 +7,8 @@ The example project is part of the [Arm Mbed OS Official Examples](https://os.mb
 You can build the project with all supported [Mbed OS build tools](https://os.mbed.com/docs/mbed-os/latest/tools/index.html). However, this example project specifically refers to the command-line interface tool [Arm Mbed CLI](https://github.com/ARMmbed/mbed-cli#installing-mbed-cli).
 (Note: To see a rendered example you can import into the Arm Online Compiler, please see our [import quick start](https://os.mbed.com/docs/mbed-os/latest/quick-start/online-with-the-online-compiler.html#importing-the-code).)
 
+It has been tested on K64F with Ethernet and DISCO_L475VG_IOT01A with WiFi, but any Mbed OS 6 targets with Internet access should work.
+
 ## Setting up an Azure IoT Hub account
 
 Follow Azure IoT Hub's official documentation to
@@ -26,7 +28,16 @@ To fetch the example,
     ```
     Or if you fetched the example with `git clone`, run `mbed deploy` inside the cloned repository.
 1. In the example repository you fetched, open [`mbed_app.json`](./mbed_app.json) and set the value of `iothub_connection_string` to the Primary Connection String you [previously copied](#setting-up-the-cloud), keeping any escaped quotes (`\"`).
-1. (If you want to use WiFi) set `nsapi.default-wifi-ssid` to your WiFi name and `nsapi.default-wifi-password` to your WiFi password, keeping any escaped quotes (`\"`).
+1. (If you want to use *WiFi*) set `nsapi.default-wifi-ssid` to your WiFi name and `nsapi.default-wifi-password` to your WiFi password, keeping any escaped quotes (`\"`). If you use a different target, replace `"DISCO_L475VG_IOT01A"` with your target and remove `"target.components_add": ["wifi_ism43362"]` (unless it use the same ISM43362 WiFi module).
+    For example, to use NUCLEO-F429ZI:
+    ```json
+        "NUCLEO-F429ZI": {
+            "target.network-default-interface-type": "WIFI",
+            "nsapi.default-wifi-security": "WPA_WPA2",
+            "nsapi.default-wifi-ssid": "\"SSID\"",
+            "nsapi.default-wifi-password": "\"PASSWORD\""
+        }
+    ```
 
 To compile and run the example,
 
