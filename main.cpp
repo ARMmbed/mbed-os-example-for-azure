@@ -179,6 +179,7 @@ int main() {
     LogInfo("Getting time from the NTP server");
 
     NTPClient ntp(_defaultSystemNetwork);
+    ntp.set_server("time.google.com", 123);
     time_t timestamp = ntp.get_timestamp();
     if (timestamp < 0) {
         LogError("Failed to get the current time, error: %ld", timestamp);
