@@ -50,7 +50,7 @@ static IOTHUBMESSAGE_DISPOSITION_RESULT on_message_received(IOTHUB_MESSAGE_HANDL
     }
 
     message_received = true;
-    LogInfo("Message body: %s", data_ptr);
+    LogInfo("Message body: %.*s", len, data_ptr);
     return IOTHUBMESSAGE_ACCEPTED;
 }
 
