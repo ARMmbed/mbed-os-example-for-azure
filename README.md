@@ -27,6 +27,9 @@ To fetch the example,
     mbed import mbed-os-example-azure
     ```
     Or if you fetched the example with `git clone`, run `mbed deploy` inside the cloned repository.
+
+    **Note**: Please _ignore_ warnings like `Could not access submodule ...` and `[mbed] WARNING: File "package.bld" in ...`. They are caused by different dependency control systems used by the Azure SDK and Mbed CLI.
+
 1. In the example repository you fetched, open [`mbed_app.json`](./mbed_app.json) and set the value of `iothub_connection_string` to the Primary Connection String you [previously copied](#setting-up-the-cloud), keeping any escaped quotes (`\"`).
 1. (If you want to use *WiFi*) set `nsapi.default-wifi-ssid` to your WiFi name and `nsapi.default-wifi-password` to your WiFi password, keeping any escaped quotes (`\"`). If you use a different target, replace `"DISCO_L475VG_IOT01A"` with your target and remove `"target.components_add": ["wifi_ism43362"]` (unless it use the same ISM43362 WiFi module).
     For example, to use NUCLEO-F429ZI:
