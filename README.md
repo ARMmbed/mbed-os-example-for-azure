@@ -24,9 +24,9 @@ To fetch the example,
 
 1. Fetch the project and its dependencies
     ```
-    mbed import mbed-os-example-azure
+    mbed import mbed-os-example-for-azure
     ```
-    Or if you fetched the example with `git clone`, run `mbed deploy` inside the cloned repository.
+    Or if you fetched this example repository with `git clone`, run `mbed deploy` inside the cloned repository.
 
     **Note**: Please _ignore_ warnings like `Could not access submodule ...` and `[mbed] WARNING: File "package.bld" in ...`. They are caused by different dependency control systems used by the Azure SDK and Mbed CLI.
 
