@@ -10,9 +10,9 @@ jobs:
     working_directory: ~
     steps:
       - checkout:
-          path: mbed-os-example-azure
+          path: mbed-os-example-for-azure
       - run: |
-          cd mbed-os-example-azure
+          cd mbed-os-example-for-azure
           mbed deploy
           mbed compile -t GCC_ARM -m K64F
 
