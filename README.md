@@ -1,6 +1,6 @@
 ![](./resources/official_armmbed_example_badge.png)
 
-# Azure IoT Hub example on Mbed OS
+# Azure IoT Hub example for Mbed OS
 
 The example project is part of the [Arm Mbed OS Official Examples](https://os.mbed.com/code/). It contains an application that uses the [Microsoft Azure SDK](https://github.com/Azure/azure-iot-sdk-c) to connect to an IoT Hub instance using the MQTT protocol.
 
