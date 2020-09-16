@@ -17,7 +17,11 @@
             "nsapi.default-wifi-ssid": "\"SSID\"",
             "nsapi.default-wifi-password": "\"PASSWORD\""
         },
-       "EP_AGORA": {
+        "EP_AGORA": {
+            "nsapi.default-cellular-apn"                : "\"APN\"",
+            "nsapi.default-cellular-sim-pin"            : null,
+            "nsapi.default-cellular-username"           : null,
+            "nsapi.default-cellular-password"           : null,
             "platform.stdio-buffered-serial"            : true,
             "platform.stdio-flush-at-exit"              : true,
             "drivers.uart-serial-rxbuf-size"            : 1024,
@@ -30,7 +34,6 @@
             "lwip.mem-size"                             : 22000,
             "lwip.tcpip-thread-stacksize"               : 2000,
             "nsapi.dns-response-wait-time"              : 30000,
-            "nsapi.default-cellular-apn"                : "\"phone\"",
             "lwip.use-mbed-trace"                       : true,
             "lwip.debug-enabled"                        : false,
             "target.features_remove": ["CRYPTOCELL310"],
