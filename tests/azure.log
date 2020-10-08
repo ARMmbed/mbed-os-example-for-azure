@@ -1,0 +1,14 @@
+Info: Connecting to the network
+Info: Connection success, MAC: .*
+Info: Getting time from the NTP server
+Info: Time: .*
+
+Info: RTC reports .*
+
+Info: Starting the Demo
+Info: Initializing IoT Hub client
+Info: Sending: "10 messages left to send, or until we receive a reply"
+Info: Connected to IoT Hub
+.*
+Info: Sending: "1 messages left to send, or until we receive a reply"
+Info: Message sent successfully
