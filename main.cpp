@@ -196,9 +196,5 @@ int main() {
     demo();
     LogInfo("The demo has ended");
 
-    while (true) {
-        sleep();
-    }
-
     return 0;
 }
