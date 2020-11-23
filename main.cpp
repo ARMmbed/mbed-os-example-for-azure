@@ -186,19 +186,11 @@ int main() {
         return -1;
     }
     LogInfo("Time: %s", ctime(&timestamp));
-
-    rtc_init();
-    rtc_write(timestamp);
-    time_t rtc_timestamp = rtc_read(); // verify it's been successfully updated
-    LogInfo("RTC reports %s", ctime(&rtc_timestamp));
+    set_time(timestamp);
 
     LogInfo("Starting the Demo");
     demo();
     LogInfo("The demo has ended");
-
-    while (true) {
-        sleep();
-    }
 
     return 0;
 }
