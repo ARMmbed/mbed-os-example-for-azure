@@ -12,7 +12,10 @@ include(${MBED_PATH}/tools/cmake/app.cmake)
 add_subdirectory(${MBED_PATH})
 add_subdirectory(mbed-client-for-azure)
 add_subdirectory(ntp-client)
-add_subdirectory(drivers/COMPONENT_wifi_ism43362)
+
+if("wifi_ism43362" IN_LIST MBED_TARGET_LABELS)
+    add_subdirectory(drivers/COMPONENT_wifi_ism43362)
+endif()
 
 add_executable(${APP_TARGET})
 
@@ -32,11 +35,17 @@ target_sources(${APP_TARGET}
         main.cpp
 )
 
+if("wifi_ism43362" IN_LIST MBED_TARGET_LABELS)
+    target_link_libraries(${APP_TARGET}
+        PRIVATE
+            wifi-ism43362
+    )
+endif()
+
 target_link_libraries(${APP_TARGET}
     PRIVATE
         mbed-client-for-azure
         mbed-os
-        wifi-ism43362
         ntp-client
         mbed-mbedtls
 )
