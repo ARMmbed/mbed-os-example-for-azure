@@ -1,9 +1,5 @@
 {
     "config": {
-        "iothub_connection_string": {
-            "help": "Azure IoT Hub connection string",
-            "value": "\"HostName=...;DeviceId=...;SharedAccessKey=...\""
-        },
         "iothub_client_trace": {
             "help": "Enable IoT Hub Client tracing",
             "value": false
