@@ -14,5 +14,5 @@ jobs:
       - run: |
           cd mbed-os-example-for-azure
           mbed deploy
-          mbed compile -t GCC_ARM -m K64F
+          mbed compile -t GCC_ARM -m EP_AGORA
 

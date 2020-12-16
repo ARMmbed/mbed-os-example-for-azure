@@ -18,6 +18,7 @@
 #include "azure_c_shared_utility/xlogging.h"
 
 #include "iothubtransportmqtt.h"
+#include "azure_cloud_credentials.h"
 
 /**
  * This example sends and receives messages to and from Azure IoT Hub.
@@ -65,7 +66,6 @@ static void on_message_sent(IOTHUB_CLIENT_CONFIRMATION_RESULT result, void* user
 }
 
 void demo() {
-    static const char connection_string[] = MBED_CONF_APP_IOTHUB_CONNECTION_STRING;
     bool trace_on = MBED_CONF_APP_IOTHUB_CLIENT_TRACE;
     tickcounter_ms_t interval = 100;
     IOTHUB_CLIENT_RESULT res;
@@ -74,7 +74,7 @@ void demo() {
     IoTHub_Init();
 
     IOTHUB_DEVICE_CLIENT_HANDLE client_handle = IoTHubDeviceClient_CreateFromConnectionString(
-        connection_string,
+        azure_cloud::credentials::iothub_connection_string,
         MQTT_Protocol
     );
     if (client_handle == nullptr) {
