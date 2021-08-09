@@ -9,6 +9,8 @@ set(APP_TARGET mbed-os-example-for-azure)
 
 include(${MBED_PATH}/tools/cmake/app.cmake)
 
+project(${APP_TARGET})
+
 add_subdirectory(${MBED_PATH})
 add_subdirectory(mbed-client-for-azure)
 add_subdirectory(ntp-client)
@@ -18,8 +20,6 @@ if("wifi_ism43362" IN_LIST MBED_TARGET_LABELS)
 endif()
 
 add_executable(${APP_TARGET})
-
-project(${APP_TARGET})
 
 target_include_directories(${APP_TARGET}
     PRIVATE
