@@ -54,6 +54,16 @@ To fetch the example,
             "nsapi.default-wifi-password": "\"PASSWORD\""
         }
     ```
+1. (If you want to use *Cellular*) set `nsapi.default-cellular-apn` to the appropriate value based on your carrier and SIM card. Depending on your SIM and cellular carrier, you may also have to configure `nsapi.default-cellular-sim-pin`, `nsapi.default-cellular-username`, and `nsapi.default-cellular-password` as well. Make sure to keep any escaped quotes (`\"`). If you use a different target, replace `"EP_AGORA"` with your target.
+   For example, to use EP_AGORA:
+   ```
+        "EP_AGORA": {
+            "nsapi.default-cellular-apn"                : "\"APN\"",
+            "nsapi.default-cellular-sim-pin"            : null,
+            "nsapi.default-cellular-username"           : null,
+            "nsapi.default-cellular-password"           : null,
+            ...
+   ```
 
 To compile and run the example,
 
