@@ -103,3 +103,15 @@ matrix:
     - <<: *cmake-build-test
       name: "CMake Azure IoT Hub example - debug (DISCO_L475VG_IOT01A)"
       env: NAME=cmake_test TARGET_NAME=DISCO_L475VG_IOT01A PROFILE=debug CACHE_NAME=debug-DISCO_L475VG_IOT01A
+
+    - <<: *cmake-build-test
+      name: "CMake Azure IoT Hub example - develop (EP_AGORA)"
+      env: NAME=cmake_test TARGET_NAME=EP_AGORA PROFILE=develop CACHE_NAME=develop-EP_AGORA
+
+    - <<: *cmake-build-test
+      name: "CMake Azure IoT Hub example - release (EP_AGORA)"
+      env: NAME=cmake_test TARGET_NAME=EP_AGORA PROFILE=release CACHE_NAME=release-EP_AGORA
+
+    - <<: *cmake-build-test
+      name: "CMake Azure IoT Hub example - debug (EP_AGORA)"
+      env: NAME=cmake_test TARGET_NAME=EP_AGORA PROFILE=debug CACHE_NAME=debug-EP_AGORA
