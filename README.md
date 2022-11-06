@@ -24,10 +24,37 @@ Starting with version 6.5, Mbed OS uses Mbed CLI 2. It uses Ninja as a build sys
 
 ## Setting up an Azure IoT Hub account
 
-Follow Azure IoT Hub's official documentation to
+<!--Follow Azure IoT Hub's official documentation to -->
 
-1. Create a new hub on the Azure portal ([documentation](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal#create-an-iot-hub)). You will need a [_Standard_ tier](https://azure.microsoft.com/en-gb/pricing/details/iot-hub/) hub to enable cloud-to-device messages for this example, and a free option is available in this tier.
-1. Register a new device to the hub you have created ([documentation](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal#register-a-new-device-in-the-iot-hub)). Make a copy of the "Primary Connection String" of the device.
+<!--1. Create a new hub on the Azure portal ([documentation](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal#create-an-iot-hub)). You will need a [_Standard_ tier](https://azure.microsoft.com/en-gb/pricing/details/iot-hub/) hub to enable cloud-to-device messages for this example, and a free option is available in this tier.
+1. Register a new device to the hub you have created ([documentation](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-create-through-portal#register-a-new-device-in-the-iot-hub)). Make a copy of the "Primary Connection String" of the device.-->
+1. Create an [Azure account](https://azure.microsoft.com/en-gb/free/)
+1. Log in to your Azure account and you should see the console below. Click on "Create a resource"
+![step1](./resources/Step1.jpg)
+1. Click on "IoT Hub" by searching in the bar as shown below
+![step2](./resources/Step2.jpg)
+1. Click on "Create"
+![step3](./resources/Step3.jpg)
+1. Fill in the details ensuring the subscription is set to "Free Trial". Choose a resource group, region, and hub name of your choosing
+![step4](./resources/Step4.jpg)
+1. Ensure "Public endpoint (all networks)" is selected then click on "Next: Size and scale"
+![step5](./resources/Step5.jpg)
+1. Ensure price is set to "Free tier"
+![step6](./resources/Step6.jpg)
+1. Add a description of your device as shown below then click "Next: Review and create"
+![step7](./resources/Step7.jpg)
+1. Click "Create"
+![step8](./resources/Step8.jpg)
+1. Click "Add and configure IoT Devices"
+![step9](./resources/Step9.jpg)
+1. Click "New"
+![step10](./resources/Step10.jpg)
+1. Give an ID name to your device then click "Save"
+![step11](./resources/Step11.jpg)
+1. Click on the device you have just created 
+![step12](./resources/Step12.jpg)
+1. Copy the Primary Connection String
+![step13](./resources/Step13.jpg)
 
 Now the IoT Hub is ready for use in this example.
 
